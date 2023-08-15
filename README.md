@@ -6,8 +6,6 @@
 
 ## Usage
 
-To ensure smooth operation and security of the platform, there are specific configuration details that need to be set up. Please follow the instructions below:
-
 - Include the following line in the `.env` file in the Server folder with the desired PORT:
 
 ```bash
