@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddProperty from '../components/AddProperty';
+import { formatPrice, validateForm } from '../helperFunctions/helperFunctions';
+import { Property } from '../types/types';
 
 test('renders correctly', () => {
   const { container } = render(<AddProperty updateProperties={() => {}} />);
@@ -103,4 +105,77 @@ test('button add the property', () => {
   userEvent.click(screen.getByText('Add property'));
 
   expect(screen.getByText('This is a test description')).toBeInTheDocument();
+});
+
+test('it should format price correctly', () => {
+  const priceInput = '500000';
+  const formatedPrice = formatPrice(priceInput);
+  expect(formatedPrice).toBe('£500,000.00');
+});
+
+test('it should return an error if some field is empty', () => {
+  const propertyWithoutCity: Property = {
+    id: '2c15c4c1-1dd3-4ca0-8f78-0324c32eb25d',
+    houseNumber: '456',
+    streetName: 'Oak Avenue',
+    city: '',
+    country: 'Countryland',
+    postalCode: '67890',
+    propertyType: 'Flat',
+    bedrooms: 2,
+    bathrooms: 1,
+    description:
+      'Step into a beautifully maintained family residence, showcasing elegant design and thoughtful features.',
+    photo:
+      'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    price: '450000',
+  };
+  const resultForCity = validateForm(propertyWithoutCity);
+  expect(resultForCity).toEqual({
+    city: 'Please provide a valid city name (e.g. London).',
+  });
+
+  const propertyWithoutCountry: Property = {
+    id: '2c15c4c1-1dd3-4ca0-8f78-0324c32eb25d',
+    houseNumber: '456',
+    streetName: 'Oak Avenue',
+    city: 'City',
+    country: '',
+    postalCode: '67890',
+    propertyType: 'Flat',
+    bedrooms: 2,
+    bathrooms: 1,
+    description:
+      'Step into a beautifully maintained family residence, showcasing elegant design and thoughtful features.',
+    photo:
+      'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    price: '450000',
+  };
+  const resultForCountry = validateForm(propertyWithoutCountry);
+  expect(resultForCountry).toEqual({
+    country: 'Please provide a valid country name (e.g. United Kingdom).',
+  });
+});
+
+test('it should return an error if the Postal Code is incorrect for United Kingdom', () => {
+  const property: Property = {
+    id: '2c15c4c1-1dd3-4ca0-8f78-0324c32eb25d',
+    houseNumber: '456',
+    streetName: 'Oak Avenue',
+    city: 'City',
+    country: 'United Kingdom',
+    postalCode: '67890',
+    propertyType: 'Flat',
+    bedrooms: 2,
+    bathrooms: 1,
+    description:
+      'Step into a beautifully maintained family residence, showcasing elegant design and thoughtful features.',
+    photo:
+      'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    price: '450000',
+  };
+  const result = validateForm(property);
+  expect(result).toEqual({
+    postalCode: 'Please provide a valid UK postal code format (e.g. EC4V 4BE).',
+  });
 });
