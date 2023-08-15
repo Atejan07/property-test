@@ -1,3 +1,15 @@
+export const propertyTypes = [
+  'Detached',
+  'Semi-detached',
+  'Terraced',
+  'Flat',
+  'Bungalow',
+  'Farm/land',
+  'Park home',
+] as const;
+
+export type PropertyTypes = (typeof propertyTypes)[number];
+
 export interface Property {
   id: string;
   houseNumber: string;
@@ -5,15 +17,7 @@ export interface Property {
   city: string;
   country: string;
   postalCode: string;
-  propertyType:
-    | 'Detached'
-    | 'Semi-detached'
-    | 'Terraced'
-    | 'Flat'
-    | 'Bungalow'
-    | 'Farm/land'
-    | 'Park home'
-    | string;
+  propertyType: PropertyTypes;
   bedrooms: number;
   bathrooms: number;
   description: string;

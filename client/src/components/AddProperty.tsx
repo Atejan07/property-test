@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { validateForm } from '../helperFunctions/helperFunctions';
 import apiService from '../API/apiServices';
-import { Error, Property } from '../types/types';
+import { Error, Property, PropertyTypes, propertyTypes } from '../types/types';
 import 'react-toastify/dist/ReactToastify.css';
 import './AddProperty.css';
 
@@ -10,7 +10,7 @@ interface AddPropertyProps {
   updateProperties: (newProperty: Property) => void;
 }
 
-const initialState = {
+const initialState: Property = {
   id: '',
   houseNumber: '',
   streetName: '',
@@ -23,9 +23,9 @@ const initialState = {
   description: '',
   photo: '',
   price: '',
-} as Property;
+};
 
-const initialErrorState = {
+const initialErrorState: Error = {
   houseNumber: '',
   streetName: '',
   city: '',
@@ -36,20 +36,12 @@ const initialErrorState = {
   description: '',
   photo: '',
   price: '',
-} as Error;
+};
 
 function AddProperty({ updateProperties }: AddPropertyProps) {
   const [newProperty, setNewProperty] = useState<Property>(initialState);
-  const [propertyType, setPropertyType] = useState<
-    | 'Detached'
-    | 'Semi-detached'
-    | 'Terraced'
-    | 'Flat'
-    | 'Bungalow'
-    | 'Farm/land'
-    | 'Park home'
-    | string
-  >('Detached');
+  const [propertyType, setPropertyType] = useState<PropertyTypes>('Detached');
+
   const [errors, setErrors] = useState(initialErrorState);
 
   const notifySuccess = (message: string) => toast.success(message);
@@ -66,12 +58,18 @@ function AddProperty({ updateProperties }: AddPropertyProps) {
   }
 
   async function handleImage(fileInput: HTMLInputElement) {
-    if (!fileInput || !fileInput.files || fileInput.files.length === 0) return;
-    const file = fileInput.files[0];
-    const data = new FormData();
-    data.append('my_file', file);
-    const res = await apiService.saveImage(data);
-    return res.url;
+    // TODO:
+    try {
+      if (!fileInput || !fileInput.files || fileInput.files.length === 0)
+        return;
+      const file = fileInput.files[0];
+      const data = new FormData();
+      data.append('my_file', file);
+      const res = await apiService.saveImage(data);
+      return res.url;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function handleSubmit(
@@ -191,15 +189,15 @@ function AddProperty({ updateProperties }: AddPropertyProps) {
                 <select
                   id='propertyType'
                   name='propertyType'
-                  onChange={(e) => setPropertyType(e.target.value)}
+                  onChange={(e) =>
+                    setPropertyType(e.target.value as PropertyTypes)
+                  }
                 >
-                  <option value='Detached'>Detached</option>
-                  <option value='Semi-detached'>Semi-detached</option>
-                  <option value='Terraced'>Terraced</option>
-                  <option value='Flat'>Flat</option>
-                  <option value='Bungalow'>Bungalow</option>
-                  <option value='Farm/land'>Farm/land</option>
-                  <option value='Park home'>Park home</option>
+                  {propertyTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className='formField'>

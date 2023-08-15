@@ -12,7 +12,7 @@ interface PropertyListingProps {
 function PropertyListing({ properties }: PropertyListingProps) {
   return (
     <>
-      <h1>Properties for sale</h1>
+      <h1 id='firstTitle'>Properties for sale</h1>
       <div className='listingContainer'>
         {properties.length > 0 ? (
           properties.map((property) => (
