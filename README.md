@@ -16,7 +16,7 @@ PORT=3001
 
 To handle pictures upload, I utilised Cloudinary, a cloud-based image and video management.
 
-To get started, please include the following details in your `.env` file located in the Client folder:
+To get started, please include the following details in your `.env` file located in the Server folder:
 
 ```bash
 PUBLIC_CLOUDINARY_CLOUD_NAME=ddm6kawa9
