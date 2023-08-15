@@ -76,22 +76,30 @@ function AddProperty({ updateProperties }: AddPropertyProps) {
   ) {
     try {
       e.preventDefault();
+
+      // Validate form:
       const errors = validateForm(newProperty);
       if (Object.keys(errors).length > 0) {
         setErrors(errors);
         notifyError('Please complete all the fields correctly.');
         return;
       }
+
+      // Handle image upload:
       const fileInput = e.currentTarget.querySelector(
         'input[type="file"]'
       ) as HTMLInputElement;
       newProperty.photo = await handleImage(fileInput);
+
       newProperty.propertyType = propertyType;
       const addPropertyResponse = await apiService.addProperty(newProperty);
       const { message, response } = addPropertyResponse;
+
+      // Clear inputs:
       setNewProperty(initialState);
 
       if (response) {
+        // Handle error:
         const errorMessage = response.data.message;
         notifyError(errorMessage);
       } else {
