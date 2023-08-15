@@ -36,6 +36,10 @@ CLOUDINARY_URL=cloudinary://173743349211811:HuwrAiQ_RXtZ9xOgajZz0XnpoFs@ddm6kawa
 - To run the React components tests, please run `yarn test` in the Client folder.
 - To run the Node endpoints tests, please run `yarn test` in the Server folder.
 
+## Decisions
+
+I decided to use _Axios_ for making HTTP requests, ensuring efficient data communication between frontend and backend components. The integration of _UUID_ facilitated unique identifier generation, enhancing data integrity and organisation. _Cloudinary_ and _Multer_ were chosen for their seamless image uploading and storage capabilities, optimising user experience when adding property photos. I also employed _Jest_ and _SuperTest_ to test the application, guaranteeing its reliability and functionality. As for the frontend, opting for _vanilla CSS_ allowed me to create a tailored and lightweight styling solution, aligning with the project's simplicity.
+
 ## What would I do next?
 
 If I had 20+ hours to further develop this project I would build:
