@@ -28,8 +28,8 @@ CLOUDINARY_URL=cloudinary://173743349211811:HuwrAiQ_RXtZ9xOgajZz0XnpoFs@ddm6kawa
 
 ## Getting started
 
-Run `yarn start` from the Client folder.
-Run `yarn start` from the Server folder.
+- Run `yarn start` from the Client folder.
+- Run `yarn start` from the Server folder.
 
 ## Tests
 
