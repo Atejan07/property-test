@@ -54,21 +54,21 @@ test('has properties inputs', () => {
   }
 });
 
-it('updates house number field correctly', () => {
+test('it should update house number field correctly', () => {
   render(<AddProperty updateProperties={() => {}} />);
   const houseNumberInput = screen.getByLabelText('House Number');
   userEvent.type(houseNumberInput, '123');
   expect(houseNumberInput).toHaveValue('123');
 });
 
-it('updates description field correctly', () => {
+test('it should update description field correctly', () => {
   render(<AddProperty updateProperties={() => {}} />);
   const descriptionInput = screen.getByLabelText('Description');
   userEvent.type(descriptionInput, 'Lovely house with garden.');
   expect(descriptionInput).toHaveValue('Lovely house with garden.');
 });
 
-it('selects property type option correctly', () => {
+test('it should select property type option correctly', () => {
   render(<AddProperty updateProperties={() => {}} />);
   const propertyTypeSelect = screen.getByLabelText('Property Type');
   userEvent.selectOptions(propertyTypeSelect, 'Flat');

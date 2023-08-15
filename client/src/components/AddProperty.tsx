@@ -58,7 +58,6 @@ function AddProperty({ updateProperties }: AddPropertyProps) {
   }
 
   async function handleImage(fileInput: HTMLInputElement) {
-    // TODO:
     try {
       if (!fileInput || !fileInput.files || fileInput.files.length === 0)
         return;

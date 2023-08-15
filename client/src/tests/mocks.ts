@@ -1,4 +1,6 @@
-const mockProperties = [
+import { Property } from '../types/types';
+
+const mockProperties: Property[] = [
   {
     id: '839346f3-6b49-46a8-b3c5-1085d0c7a939',
     houseNumber: '123',

@@ -1,6 +1,7 @@
 import { render, waitFor, screen } from '@testing-library/react';
 import PropertyListing from '../components/PropertyListing';
 import { mockProperties } from './mocks';
+import { formatPrice } from '../helperFunctions/helperFunctions';
 
 test('renders correctly', () => {
   const { container } = render(<PropertyListing properties={[]} />);
@@ -20,7 +21,7 @@ test('renders propertyType, description and price', async () => {
     for (const property of mockProperties) {
       expect(screen.getByText(property.propertyType)).toBeInTheDocument();
       expect(screen.getByText(property.description)).toBeInTheDocument();
-      expect(screen.getByText(property.price)).toBeInTheDocument();
+      expect(screen.getByText(formatPrice(property.price))).toBeInTheDocument();
     }
   });
 });
