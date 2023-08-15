@@ -19,11 +19,11 @@ To handle pictures upload, I utilised Cloudinary, a cloud-based image and video 
 To get started, please include the following details in your `.env` file located in the Server folder:
 
 ```bash
-PUBLIC_CLOUDINARY_CLOUD_NAME=ddm6kawa9
-CLOUDINARY_PRESET=whstv677
-CLOUDINARY_API_KEY=173743349211811
-CLOUDINARY_API_SECRET=HuwrAiQ_RXtZ9xOgajZz0XnpoFs
-CLOUDINARY_URL=cloudinary://173743349211811:HuwrAiQ_RXtZ9xOgajZz0XnpoFs@ddm6kawa9
+PUBLIC_CLOUDINARY_CLOUD_NAME=example
+CLOUDINARY_URL=cloudinary://example:example@example
+CLOUDINARY_PRESET=example
+CLOUDINARY_API_KEY=example
+CLOUDINARY_API_SECRET=example
 ```
 
 ## Getting started
