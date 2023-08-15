@@ -51,7 +51,21 @@ describe('Add property to properties listing', () => {
   });
 
   test('POST /properties should return a message when property is addedd successfully', async () => {
-    const property = mockNewProperty;
+    const property = {
+      id: 'uuidv4()',
+      houseNumber: '789',
+      streetName: 'Flowers Road',
+      city: 'Villagetown',
+      country: 'Countryland',
+      postalCode: '54321',
+      propertyType: 'Semi-detached',
+      bedrooms: 4,
+      bathrooms: 2,
+      description: 'Charming house with a garden.',
+      photo:
+        'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      price: '480000',
+    };
     const response = await request(server)
       .post('/properties')
       .send(property)
@@ -75,12 +89,25 @@ describe('Add property to properties listing', () => {
   });
 
   test('POST /properties should return a list of updated properties with address, photo and price', async () => {
-    const property = mockNewProperty;
+    const property = {
+      id: 'uuidv4()',
+      houseNumber: '567',
+      streetName: 'Flowers Road',
+      city: 'Villagetown',
+      country: 'Countryland',
+      postalCode: '54321',
+      propertyType: 'Flat',
+      bedrooms: 3,
+      bathrooms: 1,
+      description: 'Charming house with a garden.',
+      photo:
+        'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      price: '480000',
+    };
     const response = await request(server)
       .post('/properties')
       .send(property)
       .set('Accept', 'application/json');
-
     const firstProperty = response.body.result[0];
     const addedProperty = response.body.result[response.body.result.length - 1];
 
@@ -89,8 +116,8 @@ describe('Add property to properties listing', () => {
     expect(firstProperty.photo).toEqual(mockProperties[0].photo);
     expect(firstProperty.price).toEqual(mockProperties[0].price);
 
-    expect(addedProperty.streetName).toEqual('Garden Road');
-    expect(addedProperty.propertyType).toEqual('Semi-detached');
+    expect(addedProperty.streetName).toEqual('Flowers Road');
+    expect(addedProperty.propertyType).toEqual('Flat');
     expect(addedProperty.photo).toEqual(property.photo);
     expect(addedProperty.price).toEqual(property.price);
   });
