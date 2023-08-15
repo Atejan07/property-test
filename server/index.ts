@@ -1,8 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import multer from 'multer';
-import path from 'path';
 import { router } from './routes/index';
 import { errorHandler } from './errorMiddleware/errorHandler';
 
