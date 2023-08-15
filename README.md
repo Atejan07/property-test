@@ -33,6 +33,11 @@ CLOUDINARY_URL=cloudinary://173743349211811:HuwrAiQ_RXtZ9xOgajZz0XnpoFs@ddm6kawa
 Run `yarn start` from the Client folder.
 Run `yarn start` from the Server folder.
 
+## Tests
+
+- To run the React components tests, please run `yarn test` in the Client folder.
+- To run the Node endpoints tests, please run `yarn test` in the Server folder.
+
 ## What would I do next?
 
 If I had 20+ hours to further develop this project I would build:
