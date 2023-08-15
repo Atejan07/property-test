@@ -1,0 +1,140 @@
+.addProperty {
+  padding: 2rem;
+  background-color: var(--tertiary);
+  color: white;
+
+  @media (max-width: 850px) {
+    padding: 2rem 0;
+  }
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 8px;
+
+  @media (max-width: 850px) {
+    padding: 0;
+  }
+}
+
+.formContainer label {
+  margin: 0.5rem 0 0 0.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.formContainer input,
+.formContainer select,
+.formContainer textarea {
+  margin: 0.5rem 0.5rem 0 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  min-width: 30vw;
+  font-family: inherit;
+  border: 1px solid var(--tertiary);
+  background-color: var(--secondary);
+}
+
+.formContainer input[type='file'] {
+  margin: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.formContainer select {
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 0.9rem;
+  color: var(--tertiary);
+}
+
+input::file-selector-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--tertiary);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--tertiary);
+  background-color: var(--secondary);
+}
+
+input:focus,
+textarea:focus,
+select {
+  color: var(--tertiary);
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--tertiary);
+  opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--tertiary);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--tertiary);
+}
+
+.formFields {
+  display: flex;
+  justify-content: space-around;
+  gap: 3rem;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: none;
+    gap: 1rem;
+  }
+}
+
+.columnField h2 {
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 850px) {
+    width: 100%;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.buttonContainer button {
+  margin: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: white;
+  cursor: pointer;
+  background-color: var(--primary);
+  transition-duration: 0.3s;
+}
+
+button:hover {
+  opacity: 0.8;
+  color: var(--tertiary);
+}
+
+.errorMessage {
+  margin-left: 0.5rem;
+  color: var(--primary);
+}

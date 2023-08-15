@@ -1,0 +1,14 @@
+:root {
+  --primary: #63c1c4;
+  --secondary: #f4fafa;
+  --tertiary: #394460;
+}
+
+.app {
+  background-color: rgb(255, 255, 255);
+  color: var(--tertiary);
+}
+.app h1 {
+  text-align: center;
+  font-weight: lighter;
+}
